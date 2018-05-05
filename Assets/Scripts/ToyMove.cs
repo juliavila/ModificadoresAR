@@ -39,22 +39,18 @@ public class ToyMove : MonoBehaviour {
 	void Update () 
 	{
 		CharacterController controller = GetComponent<CharacterController> ();
-		if (!controller.isGrounded) 
+		moveDir.y -= 1.0f * grav * Time.deltaTime;
+		if (controller.isGrounded && moveDir.y < 0) 
 		{
-			
-			moveDir.y -= 1.0f * grav * Time.deltaTime;
+			moveDir.y = 0;
 		} 
-		else 
-		{
-			moveDir.y = 0.0f;
-		}
 		Vector3 movement = moveDir*(speed*Time.deltaTime);
 		controller.Move(movement);
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit cch)
 	{
-		if (cch.normal.y < 0.9) // elimina colisoes com o chao
+		if (cch.normal.y < 0.7) // elimina colisoes com o chao
 		{
 			if(cch.gameObject.tag == "DirectionSign")
 			{

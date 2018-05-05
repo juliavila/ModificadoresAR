@@ -19,7 +19,7 @@ public class DirectionChanger : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		dirMod = new Vector3 (1, 0, 0);
+		dirMod =  transform.forward;
 		gameObject.tag = "DirectionSign";
 	}
 	
